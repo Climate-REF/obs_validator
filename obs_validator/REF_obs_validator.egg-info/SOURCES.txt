@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+obs_validator/REF_obs_validator.egg-info/PKG-INFO
+obs_validator/REF_obs_validator.egg-info/SOURCES.txt
+obs_validator/REF_obs_validator.egg-info/dependency_links.txt
+obs_validator/REF_obs_validator.egg-info/requires.txt
+obs_validator/REF_obs_validator.egg-info/top_level.txt

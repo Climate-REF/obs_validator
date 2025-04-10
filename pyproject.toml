@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0", "coverage", "pytest", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "REF_obs_validator"
+dependencies = [
+    "xarray",
+    "cfunits",
+    "cftime",
+    "pydantic",
+    "netcdf4",
+]
+dynamic = ["version"]
+authors = [
+  { name="Dora Hegedus"},
+]
+description = "A validator for CMOR-ized and CMOR-like observational datasets used within the REF"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/Climate-REF/obs_validator"
+Issues = "https://github.com/Climate-REF/obs_validator/issues"
+
+#[project.scripts]
+#export_dreq_lists_json = "data_request_api.command_line.export_dreq_lists_json:main"
+#get_variables_metadata = "data_request_api.command_line.get_variables_metadata:main"
+#CMIP7_data_request_api_config = "data_request_api.command_line.config:main"
+
+[tool.setuptools]
+package-dir = {"" = "obs_validator"}  # 🔍 Tell setuptools that packages are under src/
+
+[tool.setuptools.packages.find]
+where = ["obs_validator"]             # 🔍 Discover packages from this directory
+
+[tool.setuptools_scm]
+write_to = "obs_validator/version.py"  # updated path for version file
+
+[tool.pytest.ini_options]
+cache_dir = "obs_validator/tests/.pytest_cache"
+
+[tool.coverage.run]
+branch = true
+parallel = true
+command_line = "-m pytest"
+source = [
+    "obs_validator/utils",
+    "obs_validator/attribute_checks",
+    "obs_validator/coordinate_checks",
+    "obs_validator/variable_checks",
+    "scripts"
+]
+data_file = "obs_validator/tests/.coverage"
+
+[tool.coverage.report]
+fail_under = 50
+exclude_lines = [
+    'if __name__ == "__main__":'
+]
+
+[tool.coverage.html]
+directory = "obs_validator/tests/htmlcov"
+
+[tool.coverage.xml]
+output = "obs_validator/tests/coverage.xml"
+
+[tool.coverage.json]
+output = "obs_validator/tests/coverage.json"
+
+[tool.coverage.lcov]
+output = "obs_validator/tests/coverage.lcov"
+
+[tool.setuptools.package-data]
+"obs_validator" = ["tests/test_datasets/*.json"]

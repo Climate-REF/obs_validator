@@ -1,0 +1,5 @@
+xarray
+cfunits
+cftime
+pydantic
+netcdf4

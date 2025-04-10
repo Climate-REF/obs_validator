@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: REF_obs_validator
+Version: 0.1.dev2+g0a441aa
+Summary: A validator for CMOR-ized and CMOR-like observational datasets used within the REF
+Author: Dora Hegedus
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/Climate-REF/obs_validator
+Project-URL: Issues, https://github.com/Climate-REF/obs_validator/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: xarray
+Requires-Dist: cfunits
+Requires-Dist: cftime
+Requires-Dist: pydantic
+Requires-Dist: netcdf4
+
+# obs_validator
+
+This provides a way to validate your prepared reference dataset before publication to ESGF. It check for obs4MIPs-compliance.
