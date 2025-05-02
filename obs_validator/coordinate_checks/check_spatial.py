@@ -1,7 +1,22 @@
 import xarray as xr
+from cfunits import Units
+from ..utils.load_CVs import *
 
-
-### Need to split this up (placeholder function from ILAMB)
+def check_dims(ds: xr.Dataset, url: str) -> xr.Dataset:
+    """
+    """
+    mip_coord = select_coord_table(url, ds)
+    for dim in ds.coords:
+        if dim in ['lat', 'lon']:
+            assert ds[dim].attrs['standard_name']
+            assert dim in mip_coord[ds[dim].attrs['standard_name']]['out_name']
+            assert ds[dim].attrs['standard_name'] == mip_coord[ds[dim].attrs['standard_name']]['standard_name']
+            assert ds[dim].attrs['units'] == mip_coord[ds[dim].attrs['standard_name']]['units']
+            assert ds[dim].attrs['axis'] == mip_coord[ds[dim].attrs['standard_name']]['axis']
+            assert ds[dim].attrs['long_name'] == mip_coord[ds[dim].attrs['standard_name']]['long_name']
+    return ds
+    
+'''
 def lat_dim(ds: xr.Dataset) -> xr.Dataset:
         """
         """
@@ -122,3 +137,4 @@ def lon_dim(ds: xr.Dataset) -> xr.Dataset:
                 )
 
         return ds
+'''
